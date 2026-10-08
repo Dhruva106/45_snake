@@ -81,7 +81,37 @@ class GameEngine:
         score_text = self.font.render(f"Score: {self.score}", True, WHITE)
         screen.blit(score_text, (10, 10))
 
-        if self.game_over and not self._game_over_logged:
-            # NOTE: no proper game-over screen yet - see Task 2 in the README.
-            print("Game over! Final score:", self.score)
-            self._game_over_logged = True
+        if self.game_over:
+                    overlay = pygame.Surface((self.width, self.height))
+                    overlay.set_alpha(180)
+                    overlay.fill((0, 0, 0))
+                    screen.blit(overlay, (0, 0))
+
+                    game_over_text = self.font.render("GAME OVER", True, WHITE)
+                    score_text = self.font.render(
+                    f"Final Score: {self.score}", True, WHITE
+                )
+                    continue_text = self.font.render(
+                   "Press any key to exit", True, WHITE
+                )
+
+                    screen.blit(
+                    game_over_text,
+                    game_over_text.get_rect(
+                    center=(self.width // 2, self.height // 2 - 60)
+                )
+            )
+
+                    screen.blit(
+                    score_text,
+                    score_text.get_rect(
+                    center=(self.width // 2, self.height // 2)
+                )
+            )
+
+                    screen.blit(
+                    continue_text,
+                    continue_text.get_rect(
+                    center=(self.width // 2, self.height // 2 + 60)
+                )
+            )
