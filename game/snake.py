@@ -9,8 +9,11 @@ class Snake:
         self.grow_pending = False
 
     def set_direction(self, dx, dy):
-        # NOTE: does not currently guard against reversing directly
-        # into the segment behind the head.
+        current_dx, current_dy = self.direction
+
+        if (dx, dy) == (-current_dx, -current_dy):
+            return
+
         self.direction = (dx, dy)
 
     def move(self):
